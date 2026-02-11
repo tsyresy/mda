@@ -1,0 +1,17 @@
+# Dépendances
+node_modules
+
+# Fichiers de développement
+.env.local
+.env.development
+
+# Fichiers de cache
+.DS_Store
+*.log
+
+# Documentation (pas nécessaire en production)
+README.md
+SETUP.md
+CHANGELOG.md
+ARCHITECTURE.md
+DEPENDENCIES.md
