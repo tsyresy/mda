@@ -160,7 +160,7 @@ const AttentePage = () => {
                   },
                 }}
               >
-                🎬 AVANT GOÛT
+                🎬 RECLAMER MON BONUS ET S'ABONNER
               </Button>
             </motion.div>
           </Box>
