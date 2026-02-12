@@ -270,7 +270,7 @@ const LandingPage = () => {
                                             letterSpacing: '0.05em',
                                         }}
                                     >
-                                        Places Prises Actuelles
+                                        Places actuellement prises
                                     </Typography>
                                 </Box>
 
