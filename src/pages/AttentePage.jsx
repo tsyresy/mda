@@ -3,6 +3,7 @@ import { Box, Container, Typography, Grid, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import DayCountdown from '../components/DayCountdown';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const AttentePage = () => {
     const [showVideo, setShowVideo] = useState(false);
@@ -61,6 +62,10 @@ const AttentePage = () => {
         window.open('https://taap.it/daoxkcc', '_blank');
     };
 
+    const handleDiscordClick = () => {
+        window.open('https://discord.gg/xjQFbf3Da', '_blank');
+    };
+
     return (
         <Box
             sx={{
@@ -94,7 +99,7 @@ const AttentePage = () => {
                         variant="h5"
                         align="center"
                         sx={{
-                            mb: 8,
+                            mb: 6,
                             color: 'rgba(255,255,255,0.8)',
                             fontWeight: 400,
                             fontSize: { xs: '1.2rem', md: '1.5rem' },
@@ -104,41 +109,175 @@ const AttentePage = () => {
                     </Typography>
                 </motion.div>
 
-                {/* Vidéo Avant Goût */}
-                {showVideo && (
+                {/* Bouton Avant Goût - Déplacé en haut */}
+                {!showVideo && (
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.6 }}
                     >
                         <Box
                             sx={{
                                 mb: 6,
-                                borderRadius: 4,
-                                overflow: 'hidden',
-                                boxShadow: '0 20px 60px rgba(255, 228, 0, 0.4)',
-                                border: '3px solid #ffe400',
+                                display: 'flex',
+                                justifyContent: 'center',
                             }}
                         >
-                            <video
-                                autoPlay
-                                controls
-                                style={{
-                                    width: '100%',
-                                    height: 'auto',
-                                    display: 'block',
-                                }}
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
                             >
-                                <source
-                                    src="https://res.cloudinary.com/djillj6xt/video/upload/v1770830919/0132_kqoeya.mp4"
-                                    type="video/mp4"
-                                />
-                                Votre navigateur ne supporte pas la lecture de vidéos.
-                            </video>
+                                <Button
+                                    variant="contained"
+                                    size="large"
+                                    startIcon={<PlayArrowIcon sx={{ fontSize: '2rem !important' }} />}
+                                    onClick={handleAvantGoutClick}
+                                    sx={{
+                                        py: 2.5,
+                                        px: { xs: 4, md: 6 },
+                                        fontSize: { xs: '1rem', md: '1.3rem' },
+                                        fontWeight: 900,
+                                        background: 'linear-gradient(135deg, #ffe400 0%, #ffed4d 100%)',
+                                        color: '#000',
+                                        boxShadow: '0 10px 40px rgba(255, 228, 0, 0.5)',
+                                        borderRadius: 50,
+                                        letterSpacing: '0.05em',
+                                        animation: 'pulse 2s infinite',
+                                        '&:hover': {
+                                            background: 'linear-gradient(135deg, #ffed4d 0%, #ffe400 100%)',
+                                            boxShadow: '0 15px 50px rgba(255, 228, 0, 0.6)',
+                                        },
+                                    }}
+                                >
+                                    🎬 RÉCLAMER MON BONUS ET S'ABONNER
+                                </Button>
+                            </motion.div>
                         </Box>
                     </motion.div>
                 )}
 
+                {/* Section Vidéo + Texte + Bouton Discord */}
+                {showVideo && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <Box sx={{ mb: 6 }}>
+                            {/* Texte au-dessus de la vidéo */}
+                            <Box
+                                className="glass"
+                                sx={{
+                                    p: 4,
+                                    mb: 4,
+                                    textAlign: 'center',
+                                    backdropFilter: 'blur(200px)',
+                                    border: '2px solid #ffe400',
+                                }}
+                            >
+                                <Typography
+                                    variant="h5"
+                                    sx={{
+                                        color: '#fff',
+                                        fontWeight: 700,
+                                        mb: 3,
+                                        fontSize: { xs: '1.2rem', md: '1.5rem' },
+                                        lineHeight: 1.6,
+                                    }}
+                                >
+                                    Merci beaucoup, il est temps pour toi de rejoindre{' '}
+                                    <span style={{ color: '#ffe400' }}>Gratuitement</span> le canal premium ici
+                                </Typography>
+
+                                {/* Flèche animée */}
+                                <motion.div
+                                    animate={{
+                                        y: [0, 10, 0],
+                                    }}
+                                    transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                        ease: 'easeInOut',
+                                    }}
+                                >
+                                    <ArrowDownwardIcon
+                                        sx={{
+                                            fontSize: { xs: '3rem', md: '4rem' },
+                                            color: '#ffe400',
+                                            mb: 3,
+                                        }}
+                                    />
+                                </motion.div>
+
+                                {/* Bouton Discord */}
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    animate={{
+                                        scale: [1, 1.05, 1],
+                                    }}
+                                    transition={{
+                                        duration: 2,
+                                        repeat: Infinity,
+                                        ease: 'easeInOut',
+                                    }}
+                                >
+                                    <Button
+                                        variant="contained"
+                                        size="large"
+                                        onClick={handleDiscordClick}
+                                        sx={{
+                                            py: 3,
+                                            px: { xs: 5, md: 8 },
+                                            fontSize: { xs: '1.1rem', md: '1.4rem' },
+                                            fontWeight: 900,
+                                            background: 'linear-gradient(135deg, #ff0000 0%, #cc0000 100%)',
+                                            color: '#fff',
+                                            boxShadow: '0 10px 40px rgba(255, 0, 0, 0.6)',
+                                            borderRadius: 50,
+                                            letterSpacing: '0.05em',
+                                            textTransform: 'uppercase',
+                                            '&:hover': {
+                                                background: 'linear-gradient(135deg, #ff3333 0%, #ff0000 100%)',
+                                                boxShadow: '0 15px 50px rgba(255, 0, 0, 0.7)',
+                                            },
+                                        }}
+                                    >
+                                        🎁 RÉCLAMER MON BONUS
+                                    </Button>
+                                </motion.div>
+                            </Box>
+
+                            {/* Vidéo */}
+                            <Box
+                                sx={{
+                                    borderRadius: 4,
+                                    overflow: 'hidden',
+                                    boxShadow: '0 20px 60px rgba(255, 228, 0, 0.4)',
+                                    border: '3px solid #ffe400',
+                                }}
+                            >
+                                <video
+                                    autoPlay
+                                    controls
+                                    style={{
+                                        width: '100%',
+                                        height: 'auto',
+                                        display: 'block',
+                                    }}
+                                >
+                                    <source
+                                        src="https://res.cloudinary.com/djillj6xt/video/upload/v1770830919/0132_kqoeya.mp4"
+                                        type="video/mp4"
+                                    />
+                                    Votre navigateur ne supporte pas la lecture de vidéos.
+                                </video>
+                            </Box>
+                        </Box>
+                    </motion.div>
+                )}
+
+                {/* Blocs des 4 jours */}
                 <motion.div
                     variants={containerVariants}
                     initial="hidden"
@@ -158,50 +297,6 @@ const AttentePage = () => {
                             </Grid>
                         ))}
                     </Grid>
-                </motion.div>
-
-                {/* Bouton Avant Goût */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.6 }}
-                >
-                    <Box
-                        sx={{
-                            mt: 6,
-                            display: 'flex',
-                            justifyContent: 'center',
-                        }}
-                    >
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            <Button
-                                variant="contained"
-                                size="large"
-                                startIcon={<PlayArrowIcon sx={{ fontSize: '2rem !important' }} />}
-                                onClick={handleAvantGoutClick}
-                                sx={{
-                                    py: 2.5,
-                                    px: 6,
-                                    fontSize: { xs: '1.1rem', md: '1.3rem' },
-                                    fontWeight: 900,
-                                    background: 'linear-gradient(135deg, #ffe400 0%, #ffed4d 100%)',
-                                    color: '#000',
-                                    boxShadow: '0 10px 40px rgba(255, 228, 0, 0.5)',
-                                    borderRadius: 50,
-                                    letterSpacing: '0.05em',
-                                    '&:hover': {
-                                        background: 'linear-gradient(135deg, #ffed4d 0%, #ffe400 100%)',
-                                        boxShadow: '0 15px 50px rgba(255, 228, 0, 0.6)',
-                                    },
-                                }}
-                            >
-                                🎬 RÉCLAMER MON BONUS ET S'ABONNER
-                            </Button>
-                        </motion.div>
-                    </Box>
                 </motion.div>
 
                 <motion.div
